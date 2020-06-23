@@ -8,7 +8,7 @@ $badgesRegex = '/^[0-9]{1,2}$/';
 $phoneNumberRegex = '/(0)+[0-9]{1}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}( ){0,1}+[0-9]{2}/';
 $dateRegex = '/^(1|2)+[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/';
 $error= array();
-var_dump($_POST);
+
 if (isset($_POST['lastname'])) {  
     if (!preg_match($nameRegex, $_POST['lastname'])) {
         $error['lastname'] = 'Mauvais format';
@@ -115,6 +115,18 @@ if (isset($_POST['btnSubmit'])) {
     if (isset($_POST['diploma'])) {
         if (!($_POST['diploma'] == 'Sans' || $_POST['diploma'] == 'Bac' || $_POST['diploma'] == 'Bac+2' || $_POST['diploma'] == 'Bac+3' || $_POST['diploma'] == 'Supérieur')) {
             $error['diploma'] = 'Veuillez choisir parmis les choix proposés';
+        }
+    }
+}
+
+
+if (isset($_POST['btnSubmit'])) {    
+    if (!array_key_exists('experiencequestion', $_POST)) {
+        $error['experiencequestion'] = 'Veuillez renseigner le champ';
+    };
+    if (isset($_POST['experiencequestion'])) {
+        if (!($_POST['experiencequestion'] == 'oui' || $_POST['experiencequestion'] == 'non')) {
+            $error['experiencequestion'] = 'Veuillez choisir parmis les deux choix proposés';
         }
     }
 }
